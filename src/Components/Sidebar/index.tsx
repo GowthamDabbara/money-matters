@@ -3,6 +3,8 @@ import HomeIcon from "../../Icons/HomeIcon";
 import TransactionsIcon from "../../Icons/TransactionsIcon";
 import ProfileIcon from "../../Icons/ProfileIcon";
 import LogoutIcon from "../../Icons/LogoutIcon";
+import Cookie from "js-cookie";
+import { useNavigate } from "react-router-dom";
 import {
 	MainContainer,
 	TopPart,
@@ -20,7 +22,6 @@ import {
 	ProfilePic,
 	LogoutIconWrap,
 } from "./styled";
-import { useNavigate } from "react-router-dom";
 
 interface ActiveTab {
 	tabName: string;
@@ -70,9 +71,10 @@ const Sidebar: React.FC<ActiveTab> = ({ tabName }) => {
 		);
 	};
 
+	const navigate = useNavigate();
+
 	const logoutUser = () => {
-		const navigate = useNavigate();
-		console.log("logout");
+		Cookie.remove("user_id");
 		navigate("/login");
 	};
 

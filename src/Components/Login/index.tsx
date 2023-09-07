@@ -21,13 +21,13 @@ const Login = observer(() => {
 	const [password, setPassword] = useState("");
 	const [showError, setShowError] = useState(false);
 
-	// TODO: uncomment to cancel return to login
-	// const user_id = Cookie.get("user_id");
-	// if (user_id !== undefined) {
-	// 	return <Navigate to="/" />;
-	// }
-	const userDetails: Userstore | null = useContext(UserContext);
+	// uncomment to cancel return to login
+	const user_id = Cookie.get("user_id");
+	if (user_id !== undefined) {
+		return <Navigate to="/" />;
+	}
 
+	const userDetails: Userstore | null = useContext(UserContext);
 	// throw error if user details is null here itself.
 
 	const onChangeUsername = (val: string) => {
