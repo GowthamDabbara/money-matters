@@ -1,4 +1,24 @@
 import styled from "styled-components";
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
+
+export const StyledPopup = styled(Popup)`
+    display: none;
+    &-overlay {
+        height: ${window.innerHeight - 1 + `px`};;
+        /* background: transparent; */
+        backdrop-filter: blur(0px);
+    }
+    &-content {
+        margin: 0;
+        padding: 0;
+        width: 591px;
+        height: 188px;
+        flex-shrink: 0;
+        border-radius: 16px;
+        /* background: transparent; */
+    }
+`
 
 export const MainContainer = styled.div`
     flex-shrink: 0;
