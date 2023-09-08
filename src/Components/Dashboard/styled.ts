@@ -3,10 +3,8 @@ import styled from "styled-components";
 interface Admin {
     admin?: boolean;
     lastCard?: boolean;
-}
-
-interface Credited {
-    credited: boolean
+    header?: boolean;
+    credited?: boolean
 }
 
 export const MainSection = styled.div`
@@ -120,7 +118,7 @@ export const CardWrap = styled.div`
     flex: 1;
 `;
 
-export const CardBalanceText = styled.h4<Credited>`
+export const CardBalanceText = styled.h4<Admin>`
     margin: 0;
 	color: ${(props) => (props.credited ? "#16DBAA" : "#FE5C73")};
     font-family: Inter;
@@ -174,23 +172,23 @@ export const TransactionTitle = styled.div<Admin>`
     line-height: normal;
 `;
 
-export const TransactionCategory = styled.div`
-    color: #718EBF;
+export const TransactionCategory = styled.div<Admin>`
+    color: ${(props) => (props.header ? "#343C6A" : "#718EBF")};
     font-family: Inter;
     font-size: 16px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: ${(props) => (props.header ? 500 : 400)};
     line-height: normal;
     min-width: 100px;
     margin-right: 96px;
 `;
 
-export const TransactionDate = styled.div`
-    color: #718EBF;
+export const TransactionDate = styled.div<Admin>`
+    color: ${(props) => (props.header ? "#343C6A" : "#718EBF")};
     font-family: Inter;
     font-size: 16px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: ${(props) => (props.header ? 500 : 400)};
     line-height: normal;
     width: 131px;
     min-width: 131px;
@@ -198,7 +196,7 @@ export const TransactionDate = styled.div`
 `;
 
 export const TransactionValue = styled.div<Admin>`
-    color: #FE5C73;
+    color: ${(props) => (props.header ? "#343C6A" : "#FE5C73")};
     text-align: right;
     font-family: Inter;
     font-size: 16px;
@@ -206,6 +204,7 @@ export const TransactionValue = styled.div<Admin>`
     font-weight: 500;
     line-height: normal;
     margin: auto;
+    min-width: 63px;
     margin-right: ${(props) => (props.admin ? 0 : 80 + `px`)};
 `;
 

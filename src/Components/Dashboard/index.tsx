@@ -91,7 +91,7 @@ const Dashboard = () => {
 				<TransactionTitle admin={true}>title</TransactionTitle>
 				<TransactionCategory>shopping</TransactionCategory>
 				<TransactionDate>28 Jan, 12.30 AM</TransactionDate>
-				<TransactionValue admin={true}>150</TransactionValue>
+				<TransactionValue admin={true}>10050</TransactionValue>
 			</TransactionCard>
 		);
 	};
@@ -165,6 +165,21 @@ const Dashboard = () => {
 					<MiddleWrap>
 						{userTransactionCard()}
 						{userTransactionCard()}
+						<TransactionCard>
+							<IconWrap>
+								<UpArrowIcon fillColor="#16DBAA"></UpArrowIcon>
+							</IconWrap>
+							<TransactionTitle>title</TransactionTitle>
+							<TransactionCategory>shopping</TransactionCategory>
+							<TransactionDate>28 Jan, 12.30 AM</TransactionDate>
+							<TransactionValue>00</TransactionValue>
+							<EditIconWrap>
+								<EditIcon></EditIcon>
+							</EditIconWrap>
+							<DeleteIconWrap>
+								<DeleteIcon></DeleteIcon>
+							</DeleteIconWrap>
+						</TransactionCard>
 						{adminTransactionCard()}
 					</MiddleWrap>
 					<DataTitle>Debit & Credit Overview</DataTitle>

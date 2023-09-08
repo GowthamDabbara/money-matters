@@ -78,7 +78,7 @@ export const LeftBar = styled.div<ActiveProp>`
 `;
 
 export const Icon = styled.div<ActiveProp>`
-    margin-left: ${(props) => (props.active ? 38+`px` : 44+`px`)};
+    margin-left: 44px;
     margin-right: 26px;
     width: auto;
 `;

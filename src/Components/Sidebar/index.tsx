@@ -5,7 +5,7 @@ import TransactionsIcon from "../../Icons/TransactionsIcon";
 import ProfileIcon from "../../Icons/ProfileIcon";
 import LogoutIcon from "../../Icons/LogoutIcon";
 import Cookie from "js-cookie";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ConfrimPopup from "../ConfrimPopup";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
@@ -35,7 +35,7 @@ interface ActiveTab {
 const Sidebar: React.FC<ActiveTab> = ({ tabName }) => {
 	const [activeNumber, setActiveNumber] = useState<{
 		value: number;
-	}>({ value: 1 });
+	}>({ value: null });
 	const [openPopup, setOpenPopup] = useState<{
 		openPopup: boolean;
 	}>({ openPopup: false });
@@ -115,21 +115,27 @@ const Sidebar: React.FC<ActiveTab> = ({ tabName }) => {
 			<TopPart>
 				<Logo src="https://res.cloudinary.com/dfbkalvc3/image/upload/v1693984030/MoneyMatters/Logo_pof7su.png" />
 				<NavTabs>
-					<Tab>
-						<LeftBar active={1 === activeNumber.value}></LeftBar>
-						{renderIcon(1, 1 === activeNumber.value)}
-						<Title active={1 === activeNumber.value}>Dashboard</Title>
-					</Tab>
-					<Tab>
-						<LeftBar active={2 === activeNumber.value}></LeftBar>
-						{renderIcon(2, 2 === activeNumber.value)}
-						<Title active={2 === activeNumber.value}>Transactions</Title>
-					</Tab>
-					<Tab>
-						<LeftBar active={3 === activeNumber.value}></LeftBar>
-						{renderIcon(3, 3 === activeNumber.value)}
-						<Title active={3 === activeNumber.value}>Profile</Title>
-					</Tab>
+					<Link to={`/`} style={{ textDecoration: "none" }}>
+						<Tab>
+							<LeftBar active={1 === activeNumber.value}></LeftBar>
+							{renderIcon(1, 1 === activeNumber.value)}
+							<Title active={1 === activeNumber.value}>Dashboard</Title>
+						</Tab>
+					</Link>
+					<Link to={`/transactions`} style={{ textDecoration: "none" }}>
+						<Tab>
+							<LeftBar active={2 === activeNumber.value}></LeftBar>
+							{renderIcon(2, 2 === activeNumber.value)}
+							<Title active={2 === activeNumber.value}>Transactions</Title>
+						</Tab>
+					</Link>
+					<Link to={`/profile`} style={{ textDecoration: "none" }}>
+						<Tab>
+							<LeftBar active={3 === activeNumber.value}></LeftBar>
+							{renderIcon(3, 3 === activeNumber.value)}
+							<Title active={3 === activeNumber.value}>Profile</Title>
+						</Tab>
+					</Link>
 				</NavTabs>
 			</TopPart>
 			<BottomPart>
