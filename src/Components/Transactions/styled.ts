@@ -20,9 +20,16 @@ export const MainContainer = styled.div`
     background: #F5F7FA;
 `;
 
-export const TopBar = styled.div`
+export const TopBarWrap = styled.div`
     height: 84px;
     padding: 0 40px;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+`;
+
+export const TopBar = styled.div`
+    height: 84px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -75,4 +82,23 @@ export const MiddleWrap = styled.div`
     border-radius: 25px;
     background: #FFF;
     margin: 32px 0 32px 0;
+`;
+
+interface BtnProps {
+    active: boolean
+}
+
+export const FilterBtn = styled.button<BtnProps>`
+    margin-right: 10px;
+    border: none;
+    color: ${(props) => (props.active ? "#2D60FF" : "#718EBF")};
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    background: transparent;
+    cursor: pointer;
+    border-bottom: 3px solid;
+    border-radius: 0px 0px 1.5px 1.5px;
 `;
