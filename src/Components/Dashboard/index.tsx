@@ -1,24 +1,10 @@
 import React, { useContext } from "react";
-import {
-	BarChart,
-	Bar,
-	Cell,
-	XAxis,
-	YAxis,
-	CartesianGrid,
-	Tooltip,
-	Legend,
-	ResponsiveContainer,
-} from "recharts";
 import Cookie from "js-cookie";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { UserContext } from "../../App";
 import Sidebar from "../Sidebar";
 import PlusIcon from "../../Icons/PlusIcon";
-import DownArrowIcon from "../../Icons/DownArrowIcon";
-import UpArrowIcon from "../../Icons/UpArrowIcon";
-import EditIcon from "../../Icons/EditIcon";
-import DeleteIcon from "../../Icons/DeleteIcon";
+import GraphChart from "../GraphChart";
 import TransactionsAdminCard from "../TransactionsAdminCard";
 import TransactionsUserCard from "../TransactionsUserCard";
 import {
@@ -36,23 +22,6 @@ import {
 	CardTypeText,
 	CardWrap,
 	Logo,
-	TransactionCard,
-	TransactionCategory,
-	TransactionDate,
-	TransactionTitle,
-	TransactionValue,
-	DeleteIconWrap,
-	EditIconWrap,
-	CardDP,
-	CardProfileWrap,
-	CardUserName,
-	IconWrap,
-	ChartDataText,
-	ChartDataValue,
-	ChartDataWrap,
-	ChartTextWrap,
-	CreditBox,
-	DebitBox,
 } from "./styled";
 import Userstore from "../../Stores/Userstore";
 
@@ -141,57 +110,7 @@ const Dashboard = () => {
 					</MiddleWrap>
 					<DataTitle>Debit & Credit Overview</DataTitle>
 					<BottomWrap>
-						<ChartDataWrap>
-							<ChartTextWrap>
-								<ChartDataValue>$7,560 </ChartDataValue>
-								<ChartDataText>debited & </ChartDataText>
-								<ChartDataValue>$4,560 </ChartDataValue>
-								<ChartDataText>Credited in this Week</ChartDataText>
-							</ChartTextWrap>
-							<ChartTextWrap>
-								<DebitBox></DebitBox>
-								<ChartDataText> Debit </ChartDataText>
-								<CreditBox></CreditBox>
-								<ChartDataText> Credit</ChartDataText>
-							</ChartTextWrap>
-						</ChartDataWrap>
-						<ResponsiveContainer width="100%" height={300}>
-							<BarChart
-								width={800}
-								height={300}
-								data={data}
-								margin={{
-									top: 5,
-									right: 30,
-									left: 20,
-									bottom: 5,
-								}}
-							>
-								<CartesianGrid
-									vertical={false}
-									strokeDasharray="0 0"
-									horizontalPoints={[50, 100, 150, 200, 250]}
-								/>
-								<XAxis
-									axisLine={false}
-									dataKey="name"
-									tickLine={false}
-									tick={{ fill: "#718EBF", fontSize: "14px" }}
-								/>
-								<YAxis
-									domain={[0, 500]}
-									ticks={[0, 100, 200, 300, 400, 500]}
-									allowDataOverflow={false}
-									type="number"
-									axisLine={false}
-									tickLine={false}
-									tick={{ fill: "#718EBF", fontSize: "14px" }}
-								/>
-								<Tooltip />
-								<Bar dataKey="Debit" fill="#4D78FF" radius={10} barSize={25} />
-								<Bar dataKey="Credit" fill="#FCAA0B" radius={10} barSize={25} />
-							</BarChart>
-						</ResponsiveContainer>
+						<GraphChart />
 					</BottomWrap>
 				</Main>
 			</MainContainer>
