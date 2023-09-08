@@ -1,13 +1,13 @@
 import styled from "styled-components";
 import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
 
 export const StyledPopup = styled(Popup)`
     display: none;
     &-overlay {
         height: ${window.innerHeight - 1 + `px`};;
-        background: transparent;
+        /* background: transparent; */
         backdrop-filter: blur(0px);
-        background-color: transparent;
     }
     &-content {
         margin: 0;
@@ -16,7 +16,7 @@ export const StyledPopup = styled(Popup)`
         height: 188px;
         flex-shrink: 0;
         border-radius: 16px;
-        background: transparent;
+        /* background: transparent; */
     }
 `
 

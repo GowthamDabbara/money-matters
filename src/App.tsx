@@ -1,6 +1,7 @@
 import ProtectedRoute from "./Components/ProtectedRoute";
 import Login from "./Components/Login";
 import Dashboard from "./Components/Dashboard";
+import Transactions from "./Components/Transactions";
 import { Routes, Route } from "react-router-dom";
 import React, { useRef, createContext, useContext } from "react";
 import Userstore from "./Stores/Userstore";
@@ -16,7 +17,7 @@ function App() {
 				<Route path="/login" element={<Login />} />
 				<Route path="/" element={<ProtectedRoute />}>
 					<Route path="/" element={<Dashboard />} />
-					{/* <Route exact path="/temp" element={<Dashboard />} /> */}
+					<Route path="/transactions" element={<Transactions />} />
 					{/* <Route exact path="/login" element={<Login />} />
 				<Route exact path="/" element={<Home />} />
 				<Route exact path="/books" element={<BookShelf />} />

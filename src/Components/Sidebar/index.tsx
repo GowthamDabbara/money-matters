@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { useState, useEffect, ReactNode } from "react";
 import HomeIcon from "../../Icons/HomeIcon";
 import TransactionsIcon from "../../Icons/TransactionsIcon";
@@ -6,7 +7,6 @@ import LogoutIcon from "../../Icons/LogoutIcon";
 import Cookie from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import ConfrimPopup from "../ConfrimPopup";
-import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import {
 	MainContainer,
@@ -81,7 +81,8 @@ const Sidebar: React.FC<ActiveTab> = ({ tabName }) => {
 	const navigate = useNavigate();
 
 	const logoutUser = () => {
-		// setOpenPopup({ openPopup: true });
+		setOpenPopup({ openPopup: true });
+		console.log(openPopup.openPopup, "inside logoutuser");
 		Cookie.remove("user_id");
 		navigate("/login");
 	};
@@ -89,24 +90,13 @@ const Sidebar: React.FC<ActiveTab> = ({ tabName }) => {
 	const showPopup = () => {
 		console.log(openPopup, "close popo");
 		setOpenPopup({ openPopup: false });
-		// console.log(openPopup);
+		console.log(openPopup.openPopup, "after cancel");
 	};
 
 	useEffect(() => {
 		getActiveNumber();
-	}, []);
-	{
-		console.log(openPopup, "first state popup");
-	}
-	if (openPopup) {
-		if ({ openPopup: true }) {
-			console.log("empty if conditions");
-		}
-	}
-	let popupValue = { openPopup: true } ? true : false;
-	{
-		console.log(popupValue, openPopup, "var,  state");
-	}
+	}, [openPopup.openPopup]);
+
 	return (
 		<MainContainer>
 			<TopPart>
@@ -135,9 +125,6 @@ const Sidebar: React.FC<ActiveTab> = ({ tabName }) => {
 					<ProfileDetails>
 						<Name>temp</Name>
 						<Mail>olivia@untitledui.com</Mail>
-						{/* <LogoutIconWrap onClick={logoutUser}>
-							<LogoutIcon></LogoutIcon>
-						</LogoutIconWrap> */}
 						<StyledPopup
 							trigger={
 								<LogoutIconWrap onClick={logoutUser}>
@@ -148,10 +135,11 @@ const Sidebar: React.FC<ActiveTab> = ({ tabName }) => {
 							position="top center"
 							modal
 							lockScroll
-							open={{ openPopup: true } ? true : false}
+							onClose={() => {
+								setOpenPopup({ openPopup: false });
+							}}
 						>
 							<ConfrimPopup callBack={logoutUser} cancel={showPopup} />
-							<button onClick={showPopup}>clickhere</button>
 						</StyledPopup>
 					</ProfileDetails>
 				</Footer>
