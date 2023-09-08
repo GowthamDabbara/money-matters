@@ -99,6 +99,6 @@ export const FilterBtn = styled.button<BtnProps>`
     line-height: normal;
     background: transparent;
     cursor: pointer;
-    border-bottom: 3px solid;
+    border-bottom: ${(props) => (props.active ? "3px solid" : "none")};
     border-radius: 0px 0px 1.5px 1.5px;
 `;
