@@ -19,6 +19,8 @@ import DownArrowIcon from "../../Icons/DownArrowIcon";
 import UpArrowIcon from "../../Icons/UpArrowIcon";
 import EditIcon from "../../Icons/EditIcon";
 import DeleteIcon from "../../Icons/DeleteIcon";
+import TransactionsAdminCard from "../TransactionsAdminCard";
+import TransactionsUserCard from "../TransactionsUserCard";
 import {
 	MainSection,
 	MainContainer,
@@ -59,41 +61,11 @@ const Dashboard = () => {
 	console.log(userDetails);
 
 	const userTransactionCard = () => {
-		return (
-			<TransactionCard>
-				<IconWrap>
-					<UpArrowIcon fillColor="#16DBAA"></UpArrowIcon>
-				</IconWrap>
-				<TransactionTitle>title</TransactionTitle>
-				<TransactionCategory>shopping</TransactionCategory>
-				<TransactionDate>28 Jan, 12.30 AM</TransactionDate>
-				<TransactionValue>1500</TransactionValue>
-				<EditIconWrap>
-					<EditIcon></EditIcon>
-				</EditIconWrap>
-				<DeleteIconWrap>
-					<DeleteIcon></DeleteIcon>
-				</DeleteIconWrap>
-			</TransactionCard>
-		);
+		return <TransactionsUserCard />;
 	};
 
 	const adminTransactionCard = () => {
-		return (
-			<TransactionCard lastCard={true}>
-				<IconWrap>
-					<UpArrowIcon fillColor="#16DBAA"></UpArrowIcon>
-				</IconWrap>
-				<CardProfileWrap>
-					<CardDP></CardDP>
-					<CardUserName>name</CardUserName>
-				</CardProfileWrap>
-				<TransactionTitle admin={true}>title</TransactionTitle>
-				<TransactionCategory>shopping</TransactionCategory>
-				<TransactionDate>28 Jan, 12.30 AM</TransactionDate>
-				<TransactionValue admin={true}>10050</TransactionValue>
-			</TransactionCard>
-		);
+		return <TransactionsAdminCard />;
 	};
 
 	const data = [
@@ -165,21 +137,6 @@ const Dashboard = () => {
 					<MiddleWrap>
 						{userTransactionCard()}
 						{userTransactionCard()}
-						<TransactionCard>
-							<IconWrap>
-								<UpArrowIcon fillColor="#16DBAA"></UpArrowIcon>
-							</IconWrap>
-							<TransactionTitle>title</TransactionTitle>
-							<TransactionCategory>shopping</TransactionCategory>
-							<TransactionDate>28 Jan, 12.30 AM</TransactionDate>
-							<TransactionValue>00</TransactionValue>
-							<EditIconWrap>
-								<EditIcon></EditIcon>
-							</EditIconWrap>
-							<DeleteIconWrap>
-								<DeleteIcon></DeleteIcon>
-							</DeleteIconWrap>
-						</TransactionCard>
 						{adminTransactionCard()}
 					</MiddleWrap>
 					<DataTitle>Debit & Credit Overview</DataTitle>
