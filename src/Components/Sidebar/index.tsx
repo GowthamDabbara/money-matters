@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, ReactNode } from "react";
 import HomeIcon from "../../Icons/HomeIcon";
 import TransactionsIcon from "../../Icons/TransactionsIcon";
 import ProfileIcon from "../../Icons/ProfileIcon";
 import LogoutIcon from "../../Icons/LogoutIcon";
 import Cookie from "js-cookie";
 import { useNavigate } from "react-router-dom";
+import ConfrimPopup from "../ConfrimPopup";
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
 import {
 	MainContainer,
 	TopPart,
@@ -21,6 +24,7 @@ import {
 	ProfileDetails,
 	ProfilePic,
 	LogoutIconWrap,
+	StyledPopup,
 } from "./styled";
 
 interface ActiveTab {
@@ -31,6 +35,9 @@ const Sidebar: React.FC<ActiveTab> = ({ tabName }) => {
 	const [activeNumber, setActiveNumber] = useState<{
 		value: number;
 	}>({ value: 1 });
+	const [openPopup, setOpenPopup] = useState<{
+		openPopup: boolean;
+	}>({ openPopup: false });
 
 	const getActiveNumber = () => {
 		switch (tabName) {
@@ -74,14 +81,32 @@ const Sidebar: React.FC<ActiveTab> = ({ tabName }) => {
 	const navigate = useNavigate();
 
 	const logoutUser = () => {
+		// setOpenPopup({ openPopup: true });
 		Cookie.remove("user_id");
 		navigate("/login");
+	};
+
+	const showPopup = () => {
+		console.log(openPopup, "close popo");
+		setOpenPopup({ openPopup: false });
+		// console.log(openPopup);
 	};
 
 	useEffect(() => {
 		getActiveNumber();
 	}, []);
-
+	{
+		console.log(openPopup, "first state popup");
+	}
+	if (openPopup) {
+		if ({ openPopup: true }) {
+			console.log("empty if conditions");
+		}
+	}
+	let popupValue = { openPopup: true } ? true : false;
+	{
+		console.log(popupValue, openPopup, "var,  state");
+	}
 	return (
 		<MainContainer>
 			<TopPart>
@@ -110,9 +135,24 @@ const Sidebar: React.FC<ActiveTab> = ({ tabName }) => {
 					<ProfileDetails>
 						<Name>temp</Name>
 						<Mail>olivia@untitledui.com</Mail>
-						<LogoutIconWrap onClick={logoutUser}>
+						{/* <LogoutIconWrap onClick={logoutUser}>
 							<LogoutIcon></LogoutIcon>
-						</LogoutIconWrap>
+						</LogoutIconWrap> */}
+						<StyledPopup
+							trigger={
+								<LogoutIconWrap onClick={logoutUser}>
+									<LogoutIcon></LogoutIcon>
+								</LogoutIconWrap>
+							}
+							arrow={false}
+							position="top center"
+							modal
+							lockScroll
+							open={{ openPopup: true } ? true : false}
+						>
+							<ConfrimPopup callBack={logoutUser} cancel={showPopup} />
+							<button onClick={showPopup}>clickhere</button>
+						</StyledPopup>
 					</ProfileDetails>
 				</Footer>
 			</BottomPart>
