@@ -30,6 +30,15 @@ export const InputContainer = styled.div`
 	}
 `;
 
+interface LoaderProp {
+    show: boolean
+}
+
+export const LoaderWrap = styled.div<LoaderProp>`
+    display: ${(props) => props.show ? "flex" : "none"};
+    justify-content: center;
+`;
+
 export const LoginButton = styled.button`
 	background-color: #0284c7;
 	border: none;

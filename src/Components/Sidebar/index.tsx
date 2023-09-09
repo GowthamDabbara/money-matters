@@ -1,5 +1,5 @@
 //@ts-nocheck
-import React, { useState, useEffect, ReactNode } from "react";
+import React, { useState, useEffect, ReactNode, useContext } from "react";
 import HomeIcon from "../../Icons/HomeIcon";
 import TransactionsIcon from "../../Icons/TransactionsIcon";
 import ProfileIcon from "../../Icons/ProfileIcon";
@@ -7,8 +7,8 @@ import LogoutIcon from "../../Icons/LogoutIcon";
 import Cookie from "js-cookie";
 import { Link, useNavigate } from "react-router-dom";
 import ConfrimPopup from "../ConfrimPopup";
-import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
+import { UserContext } from "../../App";
 import {
 	MainContainer,
 	TopPart,
@@ -27,18 +27,16 @@ import {
 	LogoutIconWrap,
 	StyledPopup,
 } from "./styled";
-
-interface ActiveTab {
+interface SideBarProps {
 	tabName: string;
 }
 
-const Sidebar: React.FC<ActiveTab> = ({ tabName }) => {
+const Sidebar: React.FC<SideBarProps> = observer(({ tabName }) => {
 	const [activeNumber, setActiveNumber] = useState<{
 		value: number;
 	}>({ value: null });
-	const [openPopup, setOpenPopup] = useState<{
-		openPopup: boolean;
-	}>({ openPopup: false });
+
+	const userDetails = useContext(UserContext);
 
 	const getActiveNumber = () => {
 		switch (tabName) {
@@ -82,34 +80,17 @@ const Sidebar: React.FC<ActiveTab> = ({ tabName }) => {
 	const navigate = useNavigate();
 
 	const logoutUser = () => {
-		setOpenPopup({ openPopup: true });
-		console.log(openPopup.openPopup, "inside logoutuser");
 		Cookie.remove("user_id");
 		navigate("/login");
 	};
 
-	const showPopup = () => {
-		console.log(openPopup, "close popo");
-		setOpenPopup({ openPopup: false });
-		console.log(openPopup.openPopup, "after cancel");
-	};
+	const showPopup = () => {};
 
 	useEffect(() => {
 		getActiveNumber();
-	}, [openPopup.openPopup]);
-	// {
-	// 	console.log(openPopup, "first state popup");
-	// }
-	// if (openPopup) {
-	// 	if ({ openPopup: true }) {
-	// 		console.log("empty if conditions");
-	// 	}
-	// }
-	// let temp = openPopup;
-	// let popupValue = { openPopup: 1 } ? true : false;
-	// {
-	// 	console.log(temp, openPopup, "var,  state");
-	// }
+		getDashBoardDetails;
+	}, []);
+
 	return (
 		<MainContainer>
 			<TopPart>
@@ -142,8 +123,11 @@ const Sidebar: React.FC<ActiveTab> = ({ tabName }) => {
 				<Footer>
 					<ProfilePic></ProfilePic>
 					<ProfileDetails>
-						<Name>temp</Name>
-						<Mail>olivia@untitledui.com</Mail>
+						<Name>{userDetails?.profileDetails.name}</Name>
+						<Mail>{userDetails?.profileDetails.email}</Mail>
+						<LogoutIconWrap onClick={logoutUser}>
+							<LogoutIcon></LogoutIcon>
+						</LogoutIconWrap>
 						<StyledPopup
 							trigger={
 								<LogoutIconWrap onClick={logoutUser}>
@@ -154,9 +138,6 @@ const Sidebar: React.FC<ActiveTab> = ({ tabName }) => {
 							position="top center"
 							modal
 							lockScroll
-							onClose={() => {
-								setOpenPopup({ openPopup: false });
-							}}
 						>
 							<ConfrimPopup callBack={logoutUser} cancel={showPopup} />
 						</StyledPopup>
@@ -165,6 +146,6 @@ const Sidebar: React.FC<ActiveTab> = ({ tabName }) => {
 			</BottomPart>
 		</MainContainer>
 	);
-};
+});
 
 export default Sidebar;

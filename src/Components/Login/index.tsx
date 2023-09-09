@@ -1,4 +1,5 @@
 import React from "react";
+import ReactLoading from "react-loading";
 import {
 	MainContainer,
 	Form,
@@ -7,6 +8,7 @@ import {
 	LoginButton,
 	InputLabel,
 	UserInpField,
+	LoaderWrap,
 } from "./styled";
 import { useState, useContext } from "react";
 import Cookie from "js-cookie";
@@ -20,12 +22,14 @@ const Login = observer(() => {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [showError, setShowError] = useState(false);
+	const [showLoader, setShowLoader] = useState(false);
 
 	// TODO: uncomment to cancel return to login
-	// const user_id = Cookie.get("user_id");
-	// if (user_id !== undefined) {
-	// 	return <Navigate to="/" />;
-	// }
+	const user_id = Cookie.get("user_id");
+	if (user_id !== undefined) {
+		return <Navigate to="/" />;
+	}
+
 	const userDetails: Userstore | null = useContext(UserContext);
 
 	// throw error if user details is null here itself.
@@ -75,6 +79,7 @@ const Login = observer(() => {
 	};
 
 	const onSubmitFailure = () => {
+		setShowLoader(false);
 		setShowError(true);
 	};
 
@@ -98,6 +103,8 @@ const Login = observer(() => {
 		if (condition) {
 			userDetails?.setProfileDetails(data.users[0]);
 			navigate("/");
+		} else {
+			onSubmitFailure();
 		}
 	};
 
@@ -111,6 +118,7 @@ const Login = observer(() => {
 	};
 
 	const submitForm = async (event: React.SyntheticEvent) => {
+		setShowLoader(true);
 		event.preventDefault();
 		const userDetails = { email: username, password: password };
 		const url = "https://bursting-gelding-24.hasura.app/api/rest/get-user-id";
@@ -129,7 +137,6 @@ const Login = observer(() => {
 		if (condition) {
 			onSubmitSuccess(data.get_user_id[0].id);
 		} else {
-			Cookie.remove("user_id");
 			onSubmitFailure();
 		}
 	};
@@ -145,7 +152,12 @@ const Login = observer(() => {
 							<ErrorMessage>Username or Password is Invalid</ErrorMessage>
 						)}
 					</InputContainer>
-					<LoginButton type="submit">Login</LoginButton>
+					<LoginButton type="submit">
+						<LoaderWrap show={showLoader}>
+							<ReactLoading type={"balls"} color="#fff" />
+						</LoaderWrap>
+						Login
+					</LoginButton>
 				</Form>
 			</MainContainer>
 		</UserContext.Provider>
