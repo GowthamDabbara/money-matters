@@ -18,6 +18,21 @@ import {
 	MiddleWrap,
 	TopBarWrap,
 	FilterBtn,
+	Card,
+	ProfilePic,
+} from "./styled";
+import {
+	Container,
+	BGContainer,
+	LoginBG,
+	FormContainer,
+	Form,
+	Logo,
+	InputContainer,
+	InputLabel,
+	UserInpField,
+	LoginButton,
+	ErrorMessage,
 } from "./styled";
 import Userstore from "../../Stores/Userstore";
 
@@ -33,33 +48,67 @@ const Profile = () => {
 		return <TransactionsAdminCard />;
 	};
 
+	const renderUsernameField = () => {
+		return (
+			<>
+				<InputLabel className="input-label" htmlFor="username">
+					User Name
+				</InputLabel>
+				<UserInpField
+					type="text"
+					id="username"
+					placeholder="Username"
+					// value={username}
+					// onChange={(e) => onChangeUsername(e)}
+				/>
+			</>
+		);
+	};
+	const renderPasswordField = () => {
+		return (
+			<>
+				<InputLabel className="input-label" htmlFor="password">
+					Password*
+				</InputLabel>
+				<UserInpField
+					type="password"
+					id="password"
+					placeholder="Password"
+					// value={password}
+					// onChange={(e) => onChangePassword(e)}
+				/>
+			</>
+		);
+	};
+
 	return (
 		<MainSection>
 			<Sidebar tabName="PROFILE" />
 			<MainContainer>
 				<TopBarWrap>
 					<TopBar>
-						<TopBarTitle>Transactions</TopBarTitle>
+						<TopBarTitle>Profile</TopBarTitle>
 						<TransactionBtn>
 							<PlusIcon fillColor="white"></PlusIcon>Add Transaction
 						</TransactionBtn>
 					</TopBar>
 				</TopBarWrap>
 				<Main>
-					{/* <MiddleWrap>
-						<TransactionsListHeader />
-						<TransactionsAdminListHeader />
-						{userTransactionCard()}
-						{userTransactionCard()}
-						{userTransactionCard()}
-						{userTransactionCard()}
-						{userTransactionCard()}
-						{userTransactionCard()}
-						{adminTransactionCard()}
-						{adminTransactionCard()}
-						{adminTransactionCard()}
-						{adminTransactionCard()}
-					</MiddleWrap> */}
+					<MiddleWrap>
+						<ProfilePic></ProfilePic>
+						<Card>
+							<Form onSubmit={(e) => ""}>
+								<InputContainer>{renderUsernameField()}</InputContainer>
+								<InputContainer>{renderUsernameField()}</InputContainer>
+								<InputContainer>{renderUsernameField()}</InputContainer>
+								<InputContainer>{renderPasswordField()}</InputContainer>
+								<InputContainer>{renderUsernameField()}</InputContainer>
+								<InputContainer>{renderUsernameField()}</InputContainer>
+								<InputContainer>{renderUsernameField()}</InputContainer>
+								<InputContainer>{renderUsernameField()}</InputContainer>
+							</Form>
+						</Card>
+					</MiddleWrap>
 				</Main>
 			</MainContainer>
 		</MainSection>
