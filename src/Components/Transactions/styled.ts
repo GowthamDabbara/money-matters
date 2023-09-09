@@ -21,7 +21,7 @@ export const MainContainer = styled.div`
 `;
 
 export const TopBarWrap = styled.div`
-    height: 109px;
+    height: 115px;
     padding: 0 40px;
     display: flex;
     flex-direction: column;
@@ -29,7 +29,7 @@ export const TopBarWrap = styled.div`
 `;
 
 export const TopBar = styled.div`
-    height: 109px;
+    height: 115px;
     display: flex;
     justify-content: space-between;
     align-items: center;
