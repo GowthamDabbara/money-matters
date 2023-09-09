@@ -21,7 +21,7 @@ export const MainContainer = styled.div`
 `;
 
 export const TopBarWrap = styled.div`
-    height: 84px;
+    height: 109px;
     padding: 0 40px;
     display: flex;
     flex-direction: column;
@@ -29,7 +29,7 @@ export const TopBarWrap = styled.div`
 `;
 
 export const TopBar = styled.div`
-    height: 84px;
+    height: 109px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -90,6 +90,7 @@ interface BtnProps {
 
 export const FilterBtn = styled.button<BtnProps>`
     margin-right: 10px;
+    height: 30px;
     border: none;
     color: ${(props) => (props.active ? "#2D60FF" : "#718EBF")};
     font-family: Inter;
