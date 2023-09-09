@@ -25,7 +25,7 @@ const Transactions = () => {
 	const [activeBtn, setActiveBtn] = useState("A");
 
 	const userDetails: Userstore | null = useContext(UserContext);
-	console.log(userDetails);
+	console.log(userDetails, "transaction after mobx update in login");
 
 	const userTransactionCard = () => {
 		return <TransactionsUserCard />;

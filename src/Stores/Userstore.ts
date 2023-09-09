@@ -1,15 +1,39 @@
 import { makeObservable, observable, computed, action, flow } from "mobx";
 
+interface ProfileDetailsProps 
+    {
+        id: number,
+        name: string,
+        email: string | null,
+        country: string | null,
+        date_of_birth: string | null,
+        city: string | null,
+        permanent_address: string | null,
+        postal_code: number | null,
+        present_address: string | null,
+    }
+
+
 class Userstore {
     admin: boolean;
 	userID: number;
-	profileDetails: object;
+	profileDetails: ProfileDetailsProps;
 
 	constructor() {
 		console.log("count");
         this.admin = false;
 		this.userID = 9;
-		this.profileDetails = {};
+		this.profileDetails = {
+            "id": 0,
+            "name": "",
+            "email": "",
+            "country": null,
+            "date_of_birth": "",
+            "city": null,
+            "permanent_address": null,
+            "postal_code": null,
+            "present_address": null
+        };
 		makeObservable(this, {
             admin: observable,
 			userID: observable,
@@ -25,10 +49,9 @@ class Userstore {
     }
 
 	setUserId(userID: number) {
-		console.log(userID, "inside userstore DB");
 		this.userID = userID;
 	}
-	setProfileDetails(details: object) {
+	setProfileDetails(details: ProfileDetailsProps) {
 		this.profileDetails = details;
 	}
 }

@@ -80,16 +80,34 @@ const Login = observer(() => {
 
 	const navigate = useNavigate();
 
+	const getProfileDetails = async (userID: number) => {
+		const url = "https://bursting-gelding-24.hasura.app/api/rest/profile";
+		const options = {
+			headers: {
+				"content-type": "application/json",
+				"x-hasura-admin-secret":
+					"g08A3qQy00y8yFDq3y6N1ZQnhOPOa4msdie5EtKS1hFStar01JzPKrtKEzYY2BtF",
+				"x-hasura-role": "user",
+				"x-hasura-user-id": userID.toString(),
+			},
+			method: "GET",
+		};
+		const response = await fetch(url, options);
+		const data = await response.json();
+		const condition = response.ok === true;
+		if (condition) {
+			userDetails?.setProfileDetails(data.users[0]);
+			navigate("/");
+		}
+	};
+
 	const onSubmitSuccess = (userID: number) => {
-		console.log(userID, "random string");
 		userDetails?.setUserId(userID);
-		console.log(userDetails?.userID, "user ID");
-		const history = createBrowserHistory();
 		Cookie.set("user_id", userID.toString(), {
 			expires: 15,
 			path: "/",
 		});
-		navigate("/");
+		getProfileDetails(userID);
 	};
 
 	const submitForm = async (event: React.SyntheticEvent) => {
@@ -107,10 +125,8 @@ const Login = observer(() => {
 		};
 		const response = await fetch(url, options);
 		const data = await response.json();
-		console.log(data, "data in");
 		const condition = response.ok === true && data.get_user_id.length;
 		if (condition) {
-			console.log(data.get_user_id[0].id, "id");
 			onSubmitSuccess(data.get_user_id[0].id);
 		} else {
 			Cookie.remove("user_id");

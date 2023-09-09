@@ -24,7 +24,7 @@ import Userstore from "../../Stores/Userstore";
 
 const Dashboard = () => {
 	const userDetails: Userstore | null = useContext(UserContext);
-	console.log(userDetails);
+	console.log(userDetails, "inside Dashboard");
 
 	const userTransactionCard = () => {
 		return <TransactionsUserCard />;
