@@ -77,10 +77,6 @@ export const MiddleWrap = styled.div`
     position: relative;
 `;
 
-interface BtnProps {
-    active: boolean
-}
-
 export const Card = styled.div`
 	display: flex;
     margin: 48px 30px 48px 215px;
