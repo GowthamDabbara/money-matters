@@ -68,7 +68,7 @@ export const TransactionBtn = styled.button`
 
 export const Main = styled.div`
 	margin: 0 40px;
-    min-height: ${window.innerHeight - 100 + `px`};
+    min-height: ${window.innerHeight - 150 + `px`};
     /* width: 79%; */
 `;
 
