@@ -5,6 +5,7 @@ import { UserContext } from "../../App";
 import Sidebar from "../Sidebar";
 import PlusIcon from "../../Icons/PlusIcon";
 import TransactionsListHeader from "../TransactionsListHeader";
+import TransactionsAdminListHeader from "../TransactionsAdminListHeader";
 import TransactionsUserCard from "../TransactionsUserCard";
 import TransactionsAdminCard from "../TransactionsAdminCard";
 import {
@@ -43,6 +44,10 @@ const Transactions = () => {
 		return obj.name;
 	};
 
+	const getList = () => {
+		return "list";
+	};
+
 	return (
 		<MainSection>
 			<Sidebar tabName="TRANSACTIONS" />
@@ -76,7 +81,7 @@ const Transactions = () => {
 						<FilterBtn
 							name="C"
 							onClick={() => {
-								handleBtnClick({ name: "C", list: "list" });
+								handleBtnClick({ name: "C", list: getList() });
 							}}
 							active={activeBtn === "C"}
 						>
@@ -86,13 +91,17 @@ const Transactions = () => {
 				</TopBarWrap>
 				<Main>
 					<MiddleWrap>
-						<TransactionsListHeader />
+						{/* <TransactionsListHeader /> */}
+						<TransactionsAdminListHeader />
+						{/* {userTransactionCard()}
 						{userTransactionCard()}
 						{userTransactionCard()}
 						{userTransactionCard()}
 						{userTransactionCard()}
-						{userTransactionCard()}
-						{userTransactionCard()}
+						{userTransactionCard()} */}
+						{adminTransactionCard()}
+						{adminTransactionCard()}
+						{adminTransactionCard()}
 						{adminTransactionCard()}
 					</MiddleWrap>
 				</Main>
