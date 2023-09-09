@@ -2,6 +2,7 @@ import ProtectedRoute from "./Components/ProtectedRoute";
 import Login from "./Components/Login";
 import Dashboard from "./Components/Dashboard";
 import Transactions from "./Components/Transactions";
+import Profile from "./Components/Profile";
 import { Routes, Route } from "react-router-dom";
 import React, { useRef, createContext, useContext } from "react";
 import Userstore from "./Stores/Userstore";
@@ -18,6 +19,7 @@ function App() {
 				<Route path="/" element={<ProtectedRoute />}>
 					<Route path="/" element={<Dashboard />} />
 					<Route path="/transactions" element={<Transactions />} />
+					<Route path="/profile" element={<Profile />} />
 					{/* <Route exact path="/login" element={<Login />} />
 				<Route exact path="/" element={<Home />} />
 				<Route exact path="/books" element={<BookShelf />} />
