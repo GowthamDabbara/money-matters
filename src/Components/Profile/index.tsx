@@ -4,10 +4,6 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import { UserContext } from "../../App";
 import Sidebar from "../Sidebar";
 import PlusIcon from "../../Icons/PlusIcon";
-import TransactionsListHeader from "../TransactionsListHeader";
-import TransactionsAdminListHeader from "../TransactionsAdminListHeader";
-import TransactionsUserCard from "../TransactionsUserCard";
-import TransactionsAdminCard from "../TransactionsAdminCard";
 import {
 	MainSection,
 	MainContainer,
@@ -17,36 +13,19 @@ import {
 	Main,
 	MiddleWrap,
 	TopBarWrap,
-	FilterBtn,
 	Card,
 	ProfilePic,
-} from "./styled";
-import {
-	Container,
-	BGContainer,
-	LoginBG,
-	FormContainer,
 	Form,
-	Logo,
 	InputContainer,
 	InputLabel,
 	UserInpField,
-	LoginButton,
-	ErrorMessage,
 } from "./styled";
+
 import Userstore from "../../Stores/Userstore";
 
 const Profile = () => {
 	const userDetails: Userstore | null = useContext(UserContext);
 	console.log(userDetails);
-
-	const userTransactionCard = () => {
-		return <TransactionsUserCard />;
-	};
-
-	const adminTransactionCard = () => {
-		return <TransactionsAdminCard />;
-	};
 
 	const renderUsernameField = () => {
 		return (

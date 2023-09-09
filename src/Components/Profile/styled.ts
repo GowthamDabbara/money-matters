@@ -1,12 +1,5 @@
 import styled from "styled-components";
 
-interface Admin {
-    admin?: boolean;
-    lastCard?: boolean;
-    header?: boolean;
-    credited?: boolean
-}
-
 export const MainSection = styled.div`
 	background-color: white;
     display: flex;
@@ -88,21 +81,6 @@ interface BtnProps {
     active: boolean
 }
 
-export const FilterBtn = styled.button<BtnProps>`
-    margin-right: 10px;
-    border: none;
-    color: ${(props) => (props.active ? "#2D60FF" : "#718EBF")};
-    font-family: Inter;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    background: transparent;
-    cursor: pointer;
-    border-bottom: ${(props) => (props.active ? "3px solid" : "none")};
-    border-radius: 0px 0px 1.5px 1.5px;
-`;
-
 export const Card = styled.div`
 	display: flex;
     margin: 48px 30px 48px 215px;
@@ -120,51 +98,6 @@ export const ProfilePic = styled.div`
     left: 30px;
 `;
 
-export const Container = styled.div`
-	display: flex;
-	flex-direction: row;
-	background-color: white;
-	/* @media (max-width: 769px) {
-		flex-direction: column;
-		justify-content: center;
-	} */
-`;
-
-export const BGContainer = styled.div`
-	width: 50%;
-	overflow-y: hidden;
-	@media (max-width: 769px) {
-		height: 216px;
-		text-align: center;
-		padding-top: 32px;
-		padding-bottom: 16px;
-		width: 100%;
-	}
-`;
-
-export const LoginBG = styled.img`
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
-	width: 100%;
-	@media (max-width: 769px) {
-		height: 216px;
-		width: 216px;
-		border-radius: 50%;
-	}
-`;
-
-export const FormContainer = styled.div`
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background-color: #f8fafc;
-	/* @media (max-width: 769px) {
-		background-color: white;
-		width: 100%;
-	} */
-`;
-
 export const Form = styled.form`
 	background-color: white;
 	display: flex;
@@ -176,13 +109,6 @@ export const Form = styled.form`
 		justify-content: start;
 		height: auto;
 	} */
-`;
-
-export const Logo = styled.img`
-	margin-bottom: 51px;
-	@media (max-width: 769px) {
-		margin-bottom: 35px;
-	}
 `;
 
 export const InputContainer = styled.div`
@@ -229,29 +155,4 @@ export const UserInpField = styled.input`
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-`;
-
-export const LoginButton = styled.button`
-	background-color: #0284c7;
-	border: none;
-	width: 360px;
-	height: 56px;
-	font-size: 18px;
-	margin-top: 5px;
-	line-height: 22px;
-	color: white;
-	border-radius: 8px;
-	font-weight: 700;
-	cursor: pointer;
-	@media (max-width: 769px) {
-		width: 312px;
-		height: 40px;
-	}
-`;
-
-export const ErrorMessage = styled.p`
-	margin: 0px;
-	color: red;
-	font-size: 14px;
-	padding-top: 5px;
 `;
