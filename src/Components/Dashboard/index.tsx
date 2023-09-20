@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Cookie from "js-cookie";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { UserContext } from "../../App";
@@ -21,9 +21,11 @@ import {
 	TopWrap,
 } from "./styled";
 import Userstore from "../../Stores/Userstore";
+import { observer } from "mobx-react";
 
-const Dashboard = () => {
+const Dashboard = observer(() => {
 	const userDetails: Userstore | null = useContext(UserContext);
+	const [showData, setShowData] = useState(false);
 	console.log(userDetails, "inside Dashboard");
 
 	const userTransactionCard = () => {
@@ -33,6 +35,54 @@ const Dashboard = () => {
 	const adminTransactionCard = () => {
 		return <TransactionsAdminCard />;
 	};
+
+	const onSubmitSuccess = () => {
+		console.log(userDetails?.creditDebitTotals, " credit totals ");
+		setShowData(true);
+		// getProfileDetails(userID);
+	};
+
+	const onSubmitFailure = () => {
+		// setShowLoader(false);
+		// setShowError(true);
+	};
+
+	const getCreditDebitTotals = async () => {
+		const url =
+			"https://bursting-gelding-24.hasura.app/api/rest/credit-debit-totals";
+		const id = userDetails?.profileDetails.id;
+		if (!id) {
+			console.log(id, "creds ID");
+			throw new Error("typescript bypass");
+		}
+		const options = {
+			headers: {
+				"content-type": "application/json",
+				"x-hasura-admin-secret":
+					"g08A3qQy00y8yFDq3y6N1ZQnhOPOa4msdie5EtKS1hFStar01JzPKrtKEzYY2BtF",
+				"x-hasura-role": "user",
+				"x-hasura-user-id": id.toString(),
+			},
+			method: "GET",
+		};
+		const response = await fetch(url, options);
+		const data = await response.json();
+		const condition = response.ok === true;
+		if (condition) {
+			userDetails.setCreditDebitTotals(data.totals_credit_debit_transactions);
+			onSubmitSuccess();
+		} else {
+			onSubmitFailure();
+		}
+	};
+
+	const getDashBoardData = async () => {
+		getCreditDebitTotals();
+	};
+
+	useEffect(() => {
+		getDashBoardData();
+	}, []);
 
 	return (
 		<MainSection>
@@ -46,7 +96,7 @@ const Dashboard = () => {
 				</TopBar>
 				<Main>
 					<TopWrap>
-						<DebitCreditCards />
+						<DebitCreditCards showData={showData} />
 					</TopWrap>
 					<DataTitle>Last Transaction</DataTitle>
 					<MiddleWrap>
@@ -62,6 +112,6 @@ const Dashboard = () => {
 			</MainContainer>
 		</MainSection>
 	);
-};
+});
 
 export default Dashboard;

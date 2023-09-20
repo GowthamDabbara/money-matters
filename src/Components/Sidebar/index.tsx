@@ -9,6 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 import ConfrimPopup from "../ConfrimPopup";
 import "reactjs-popup/dist/index.css";
 import { UserContext } from "../../App";
+import { observer } from "mobx-react";
 import {
 	MainContainer,
 	TopPart,
@@ -88,7 +89,6 @@ const Sidebar: React.FC<SideBarProps> = observer(({ tabName }) => {
 
 	useEffect(() => {
 		getActiveNumber();
-		getDashBoardDetails;
 	}, []);
 
 	return (
@@ -125,9 +125,6 @@ const Sidebar: React.FC<SideBarProps> = observer(({ tabName }) => {
 					<ProfileDetails>
 						<Name>{userDetails?.profileDetails.name}</Name>
 						<Mail>{userDetails?.profileDetails.email}</Mail>
-						<LogoutIconWrap onClick={logoutUser}>
-							<LogoutIcon></LogoutIcon>
-						</LogoutIconWrap>
 						<StyledPopup
 							trigger={
 								<LogoutIconWrap onClick={logoutUser}>

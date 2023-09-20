@@ -10,7 +10,7 @@ import Userstore from "./Stores/Userstore";
 export const UserContext = createContext<Userstore | null>(null);
 
 function App() {
-	const userStore: Userstore | null = new Userstore();
+	const userStore: Userstore = new Userstore();
 	console.log("inside app");
 	return (
 		<UserContext.Provider value={userStore}>
