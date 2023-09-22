@@ -27,7 +27,7 @@ export const CardWrap = styled.div`
 export const CardBalanceText = styled.h4<Admin>`
     margin: 0;
 	color: ${(props) => (props.credited ? "#16DBAA" : "#FE5C73")};
-    font-family: Inter;
+    /* font-family: Inter; */
     font-size: ${(props) => (props.credited ? 32+`px` : 25+`px`)};;
     font-style: normal;
     font-weight: 600;
@@ -37,7 +37,7 @@ export const CardBalanceText = styled.h4<Admin>`
 export const CardTypeText = styled.p`
     margin: 0;
 	color: #718EBF;
-    font-family: Inter;
+    /* font-family: Inter; */
     font-size: 16px;
     font-style: normal;
     font-weight: 400;

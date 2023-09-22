@@ -99,6 +99,7 @@ const Transactions = () => {
 						{userTransactionCard()}
 						{userTransactionCard()}
 						{userTransactionCard()} */}
+						{userTransactionCard()}
 						{adminTransactionCard()}
 						{adminTransactionCard()}
 						{adminTransactionCard()}

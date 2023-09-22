@@ -15,7 +15,7 @@ export const TransactionTitle = styled.div`
     margin-right: 80px;
     width: 174px;
     color: #343C6A;
-    font-family: Inter;
+    /* font-family: Inter; */
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
@@ -27,7 +27,7 @@ export const TransactionCategory = styled.div`
     min-width: 100px;
     margin-right: 96px;
     color: #343C6A;
-    font-family: Inter;
+    /* font-family: Inter; */
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
@@ -39,7 +39,7 @@ export const TransactionDate = styled.div`
     min-width: 131px;
     padding-right: 50px;
     color: #343C6A;
-    font-family: Inter;
+    /* font-family: Inter; */
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
@@ -52,7 +52,7 @@ export const TransactionValue = styled.div`
     min-width: 63px;
     margin-right: 0;
     color: #343C6A;
-    font-family: Inter;
+    /* font-family: Inter; */
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
@@ -72,7 +72,7 @@ export const EmptyDiv = styled.div`
 export const CardUserName = styled.div`
     position: absolute;
     color: #343C6A;
-    font-family: Inter;
+    /* font-family: Inter; */
     font-size: 16px;
     font-style: normal;
     font-weight: 500;

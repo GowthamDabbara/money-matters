@@ -28,16 +28,34 @@ const Dashboard = observer(() => {
 	const [showData, setShowData] = useState(false);
 	console.log(userDetails, "inside Dashboard");
 
-	const userTransactionCard = () => {
-		return <TransactionsUserCard />;
+	const renderTransactionCards = () => {
+		const length = userDetails?.transactions.transactions.length;
+		if (userDetails?.admin) {
+			return userDetails?.transactions.transactions.map((item, index) => (
+				<TransactionsAdminCard
+					lastCard={index + 1 === length ? true : false}
+					props={item}
+				/>
+			));
+		}
+		return userDetails?.transactions.transactions.map((item, index) => (
+			<TransactionsUserCard
+				lastCard={index + 1 === length ? true : false}
+				props={item}
+			/>
+		));
 	};
 
 	const adminTransactionCard = () => {
+		return userDetails?.transactions.transactions.map((item) => (
+			<TransactionsAdminCard props={item} />
+		));
 		return <TransactionsAdminCard />;
 	};
 
 	const onSubmitSuccess = () => {
-		console.log(userDetails?.creditDebitTotals, " credit totals ");
+		// console.log(userDetails?.creditDebitTotals, " credit totals ");
+		console.log("After data set inside dash");
 		setShowData(true);
 		// getProfileDetails(userID);
 	};
@@ -69,7 +87,38 @@ const Dashboard = observer(() => {
 		const data = await response.json();
 		const condition = response.ok === true;
 		if (condition) {
-			userDetails.setCreditDebitTotals(data.totals_credit_debit_transactions);
+			userDetails.setCreditDebitTotals(data);
+			onSubmitSuccess();
+		} else {
+			onSubmitFailure();
+		}
+	};
+
+	const getTransactions = async () => {
+		const url =
+			"https://bursting-gelding-24.hasura.app/api/rest/all-transactions?limit=2&offset=2";
+		const id = userDetails?.profileDetails.id;
+		if (!id) {
+			console.log(id, "creds ID");
+			throw new Error("typescript bypass");
+		}
+		const role = userDetails?.admin ? "admin" : "user";
+		const options = {
+			headers: {
+				"content-type": "application/json",
+				"x-hasura-admin-secret":
+					"g08A3qQy00y8yFDq3y6N1ZQnhOPOa4msdie5EtKS1hFStar01JzPKrtKEzYY2BtF",
+				"x-hasura-role": role,
+				"x-hasura-user-id": id.toString(),
+			},
+			method: "GET",
+		};
+		const response = await fetch(url, options);
+		const data = await response.json();
+		const condition = response.ok === true;
+		console.log(data, "transactions data");
+		if (condition) {
+			userDetails.setTransactions(data);
 			onSubmitSuccess();
 		} else {
 			onSubmitFailure();
@@ -78,6 +127,7 @@ const Dashboard = observer(() => {
 
 	const getDashBoardData = async () => {
 		getCreditDebitTotals();
+		getTransactions();
 	};
 
 	useEffect(() => {
@@ -96,13 +146,12 @@ const Dashboard = observer(() => {
 				</TopBar>
 				<Main>
 					<TopWrap>
-						<DebitCreditCards showData={showData} />
+						<DebitCreditCards />
 					</TopWrap>
 					<DataTitle>Last Transaction</DataTitle>
 					<MiddleWrap>
-						{userTransactionCard()}
-						{userTransactionCard()}
-						{adminTransactionCard()}
+						{renderTransactionCards()}
+						{/* {adminTransactionCard()} */}
 					</MiddleWrap>
 					<DataTitle>Debit & Credit Overview</DataTitle>
 					<BottomWrap>

@@ -31,7 +31,7 @@ export const TopBar = styled.div`
 
 export const TopBarTitle = styled.div`
     color: #343C6A;
-    font-family: Inter;
+    /* font-family: Inter; */
     font-size: 28px;
     font-style: normal;
     font-weight: 600;
@@ -52,7 +52,7 @@ export const TransactionBtn = styled.button`
     cursor: pointer;
 
     /* Button 2 Medium 15p */
-    font-family: Inter;
+    /* font-family: Inter; */
     font-size: 15px;
     font-style: normal;
     font-weight: 500;
@@ -92,7 +92,7 @@ export const BottomWrap = styled.div`
 
 export const DataTitle = styled.div`
 	color: #333B69;
-    font-family: Inter;
+    /* font-family: Inter; */
     font-size: 22px;
     font-style: normal;
     font-weight: 600;

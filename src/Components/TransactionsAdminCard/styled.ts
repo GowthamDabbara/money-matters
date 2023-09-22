@@ -1,8 +1,10 @@
 import styled from "styled-components";
+import { BooleanLiteral } from "typescript";
 
 interface Admin {
+    showLoader?: Boolean;
     lastCard?: boolean;
-    credited?: boolean
+    credited?: boolean;
 }
 
 
@@ -20,7 +22,7 @@ export const TransactionTitle = styled.div<Admin>`
     margin-right: 80px;
     width: 174px;
     color: #505887;
-    font-family: Inter;
+    /* font-family: Inter; */
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
@@ -29,7 +31,7 @@ export const TransactionTitle = styled.div<Admin>`
 
 export const TransactionCategory = styled.div<Admin>`
     color: #718EBF;
-    font-family: Inter;
+    /* font-family: Inter; */
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -40,7 +42,7 @@ export const TransactionCategory = styled.div<Admin>`
 
 export const TransactionDate = styled.div<Admin>`
     color: #718EBF;
-    font-family: Inter;
+    /* font-family: Inter; */
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -53,7 +55,7 @@ export const TransactionDate = styled.div<Admin>`
 export const TransactionValue = styled.div<Admin>`
     color: #FE5C73;
     text-align: right;
-    font-family: Inter;
+    /* font-family: Inter; */
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
@@ -81,7 +83,7 @@ export const CardDP = styled.div`
 
 export const CardUserName = styled.div`
     color: #505887;
-    font-family: Inter;
+    /* font-family: Inter; */
     font-size: 16px;
     font-style: normal;
     font-weight: 400;

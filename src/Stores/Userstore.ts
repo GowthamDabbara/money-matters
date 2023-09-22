@@ -1,4 +1,5 @@
 import { makeObservable, observable, computed, action, flow } from "mobx";
+import { interceptChange } from "mobx/dist/internal";
 
 interface ProfileDetailsProps {
     id: number | null,
@@ -20,11 +21,28 @@ interface CreditDebitTotalsProps {
     totals_credit_debit_transactions: ValueTotals[]
 }
 
+interface TransactionProps {
+    id: number,
+    transaction_name: string,
+    type: string,
+    category: string,
+    amount: number,
+    date: string,
+    user_id: number
+}
+
+interface AllTransactionsProps {
+    transactions: TransactionProps[]
+}
+
 class Userstore {
     admin: boolean;
 	userID: number;
 	profileDetails: ProfileDetailsProps;
     creditDebitTotals: CreditDebitTotalsProps;
+    transactions: AllTransactionsProps;
+    gotCreditDebitTotals: boolean;
+    gotTransactions: boolean;
 
 	constructor() {
         this.admin = false;
@@ -52,14 +70,32 @@ class Userstore {
                 }
             ]
         }
+        this.transactions = {
+            "transactions": [
+                {
+                    "id": -1,
+                    "transaction_name": "",
+                    "type": "",
+                    "category": "",
+                    "amount": -1,
+                    "date": "",
+                    "user_id": -1
+                }
+            ]
+        }
+        this.gotCreditDebitTotals = false;
+        this.gotTransactions = false;
 		makeObservable(this, {
             admin: observable,
 			userID: observable,
 			profileDetails: observable,
             creditDebitTotals: observable,
+            gotCreditDebitTotals: observable,
+            transactions: observable,
 			setUserId: action,
 			setProfileDetails: action,
             setAdmin: action,
+            setTransactions: action,
             setCreditDebitTotals: action,
 		});
 	}
@@ -76,6 +112,12 @@ class Userstore {
 	}
     setCreditDebitTotals(totals: CreditDebitTotalsProps) {
         this.creditDebitTotals = totals;
+        this.gotCreditDebitTotals = true;
+    }
+    setTransactions(transactions: AllTransactionsProps) {
+        this.transactions = transactions;
+        this.gotTransactions = true;
+        console.log(this.transactions, "store")
     }
 }
 

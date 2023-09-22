@@ -38,7 +38,7 @@ export const TopBar = styled.div`
 
 export const TopBarTitle = styled.div`
     color: #343C6A;
-    font-family: Inter;
+    /* font-family: Inter; */
     font-size: 28px;
     font-style: normal;
     font-weight: 600;
@@ -59,7 +59,7 @@ export const TransactionBtn = styled.button`
     cursor: pointer;
 
     /* Button 2 Medium 15p */
-    font-family: Inter;
+    /* font-family: Inter; */
     font-size: 15px;
     font-style: normal;
     font-weight: 500;
@@ -93,7 +93,7 @@ export const FilterBtn = styled.button<BtnProps>`
     height: 30px;
     border: none;
     color: ${(props) => (props.active ? "#2D60FF" : "#718EBF")};
-    font-family: Inter;
+    /* font-family: Inter; */
     font-size: 16px;
     font-style: normal;
     font-weight: 500;

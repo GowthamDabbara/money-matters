@@ -2,9 +2,11 @@ import React, { useContext, useState } from "react";
 import { CardWrap, CardBalanceText, CardTypeText, Logo } from "./styled";
 import { UserContext } from "../../App";
 import { observer } from "mobx-react";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 interface totalsProps {
-	showData: boolean;
+	showData?: boolean;
 }
 
 const DebitCreditCards: React.FC<totalsProps> = observer(({ showData }) => {
@@ -27,21 +29,23 @@ const DebitCreditCards: React.FC<totalsProps> = observer(({ showData }) => {
 	// 	userDetails?.creditDebitTotals?.totals_credit_debit_transactions,
 	// 	"userdetails current."
 	// );
-	if (showData) {
-		console.log(
-			userDetails?.creditDebitTotals?.totals_credit_debit_transactions,
-			"totals are set inside debits."
-		);
-	}
+	// if (showData) {
+	console.log(
+		userDetails?.creditDebitTotals?.totals_credit_debit_transactions,
+		"totals are set inside debits."
+	);
+	// }
 	return (
 		<>
 			<CardWrap>
 				<div>
 					<CardBalanceText credited={true}>
-						{showData
-							? userDetails?.creditDebitTotals
-									?.totals_credit_debit_transactions[1]?.sum
-							: "100"}
+						{userDetails?.gotCreditDebitTotals ? (
+							userDetails?.creditDebitTotals
+								?.totals_credit_debit_transactions[1]?.sum
+						) : (
+							<Skeleton />
+						)}
 					</CardBalanceText>
 					<CardTypeText>Credit</CardTypeText>
 				</div>
@@ -50,10 +54,12 @@ const DebitCreditCards: React.FC<totalsProps> = observer(({ showData }) => {
 			<CardWrap>
 				<div>
 					<CardBalanceText credited={false}>
-						{showData
-							? userDetails?.creditDebitTotals
-									?.totals_credit_debit_transactions[0]?.sum
-							: "100"}
+						{userDetails?.gotCreditDebitTotals ? (
+							userDetails?.creditDebitTotals
+								?.totals_credit_debit_transactions[0]?.sum
+						) : (
+							<Skeleton />
+						)}
 					</CardBalanceText>
 					<CardTypeText>Debit</CardTypeText>
 				</div>

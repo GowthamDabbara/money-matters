@@ -2,11 +2,12 @@ import styled from "styled-components";
 
 interface Admin {
     lastCard?: boolean;
-    credited?: boolean
+    credited?: boolean;
+    showLoader?: boolean;
 }
 
 export const TransactionCard = styled.div<Admin>`
-    display: flex;
+    display: ${(props) => (props.showLoader ? "block" : "flex")};
     align-items: center;
     width: 100%;
     height: 58px;
@@ -19,7 +20,7 @@ export const TransactionTitle = styled.div<Admin>`
     margin-right: 80px;
     width: 317px;
     color: #505887;
-    font-family: Inter;
+    /* font-family: Inter; */
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
@@ -28,7 +29,7 @@ export const TransactionTitle = styled.div<Admin>`
 
 export const TransactionCategory = styled.div<Admin>`
     color: #718EBF;
-    font-family: Inter;
+    /* font-family: Inter; */
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -39,7 +40,7 @@ export const TransactionCategory = styled.div<Admin>`
 
 export const TransactionDate = styled.div<Admin>`
     color: #718EBF;
-    font-family: Inter;
+    /* font-family: Inter; */
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -52,7 +53,7 @@ export const TransactionDate = styled.div<Admin>`
 export const TransactionValue = styled.div<Admin>`
     color: #FE5C73;
     text-align: right;
-    font-family: Inter;
+    /* font-family: Inter; */
     font-size: 16px;
     font-style: normal;
     font-weight: 500;

@@ -10,7 +10,7 @@ export const ChartDataWrap = styled.div`
 export const ChartDataValue = styled.p`
     margin: 0;
     color: #333B69;
-    font-family: Inter;
+    /* font-family: Inter; */
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -20,7 +20,7 @@ export const ChartDataValue = styled.p`
 
 export const ChartDataText = styled.p`
     color: #718EBF;
-    font-family: Inter;
+    /* font-family: Inter; */
     font-size: 16px;
     font-style: normal;
     font-weight: 400;

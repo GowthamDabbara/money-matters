@@ -29,7 +29,7 @@ export const TransactionTitle = styled.div<Admin>`
     /* max-width: ${(props) => (props.admin ? 174 + `px` : 317 + `px`)};
     min-width: ${(props) => (props.admin ? 150 + `px` : 317 + `px`)}; */
     color: #343C6A;
-    font-family: Inter;
+    /* font-family: Inter; */
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
@@ -38,7 +38,7 @@ export const TransactionTitle = styled.div<Admin>`
 
 export const TransactionCategory = styled.div<Admin>`
     color: ${(props) => (props.header ? "#343C6A" : "#718EBF")};
-    font-family: Inter;
+    /* font-family: Inter; */
     font-size: 16px;
     font-style: normal;
     font-weight: ${(props) => (props.header ? 500 : 400)};
@@ -49,7 +49,7 @@ export const TransactionCategory = styled.div<Admin>`
 
 export const TransactionDate = styled.div<Admin>`
     color: ${(props) => (props.header ? "#343C6A" : "#718EBF")};
-    font-family: Inter;
+    /* font-family: Inter; */
     font-size: 16px;
     font-style: normal;
     font-weight: ${(props) => (props.header ? 500 : 400)};
@@ -62,7 +62,7 @@ export const TransactionDate = styled.div<Admin>`
 export const TransactionValue = styled.div<Admin>`
     color: ${(props) => (props.header ? "#343C6A" : "#FE5C73")};
     text-align: right;
-    font-family: Inter;
+    /* font-family: Inter; */
     font-size: 16px;
     font-style: normal;
     font-weight: 500;

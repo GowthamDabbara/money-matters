@@ -17,7 +17,7 @@ box-shadow: 0px 4px 6px -2px rgba(0, 0, 0, 0.05), 0px 10px 15px -3px rgba(0, 0, 
 export const Title = styled.h4`
 margin: 0;
 color: #333B69;
-font-family: Inter;
+/* font-family: Inter; */
 font-size: 20px;
 font-style: normal;
 font-weight: 700;
@@ -28,7 +28,7 @@ margin-bottom: 8px;;
 export const Description = styled.p`
 margin: 0;
 color: #505887;
-font-family: Inter;
+/* font-family: Inter; */
 font-size: 14px;
 font-style: normal;
 font-weight: 400;
@@ -54,7 +54,7 @@ text-align: center;
 cursor: pointer;
 
 /* text-sm / leading-5 / font-medium */
-font-family: Inter;
+/* font-family: Inter; */
 font-size: 14px;
 font-style: normal;
 font-weight: 500;
@@ -77,7 +77,7 @@ color: #333B69;
 text-align: center;
 
 /* text-sm / leading-5 / font-medium */
-font-family: Inter;
+/* font-family: Inter; */
 font-size: 14px;
 font-style: normal;
 font-weight: 500;

@@ -116,7 +116,7 @@ export const Name = styled.div`
     color: #505887;
 
     /* Text sm / Semibold */
-    font-family: Inter;
+    /* font-family: Inter; */
     font-size: 14px;
     font-style: normal;
     font-weight: 600;
@@ -125,7 +125,7 @@ export const Name = styled.div`
 
 export const Mail = styled.div`
     color: #718EBF;
-    font-family: Inter;
+    /* font-family: Inter; */
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
